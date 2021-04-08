@@ -211,16 +211,23 @@ ncbi.full.IF <- subset(ncbi.full, IE==0 & IF > 0 & IC == 0)
 attach(ncbi.full.IC)
 ncbi.full.IC$deactivated <- ifelse(grepl("AcrIC", Acr_genes_hom), 1, ifelse(gbaMC_IC > 0 | gbaHC_IC > 0, 1, 0))
 IC.deactivated <- sum(ncbi.full.IC$deactivated > 0) #38/96 = 39%
+# Other Acr found?                     
+sum(ncbi.full.IC$acrIF > 0) # 14/96 = 14%
+sum(ncbi.full.IC$acrIE > 0) # 15/96 = 15%
 detach(ncbi.full.IC)
 
 attach(ncbi.full.IE)
 ncbi.full.IE$deactivated <- ifelse(grepl("AcrIE", Acr_genes_hom), 1, ifelse(gbaMC_IE > 0 | gbaHC_IE > 0, 1, 0))
 IE.deactivated <- sum(ncbi.full.IE$deactivated > 0) # 208/352 = 59%
+# Other Acr found?  
+sum(ncbi.full.IE$acrIF > 0) # 190/352 = 53%
 detach(ncbi.full.IE)
 
 attach(ncbi.full.IF)
 ncbi.full.IF$deactivated <- ifelse(grepl("AcrIF", Acr_genes_hom), 1, ifelse(gbaMC_IF > 0 | gbaHC_IF > 0, 1, 0))
 IF.deactivated <- sum(ncbi.full.IF$deactivated > 0) # 700/1657 = 42%
+# Other Acr found? 
+sum(ncbi.full.IF$acrIE > 0) # 522/1657 = 31%
 detach(ncbi.full.IF)
 
 # Multiple plot function
